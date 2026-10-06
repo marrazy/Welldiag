@@ -8,4 +8,6 @@ stuck_minutes: 120      # a sensor reading exactly the same value this long coun
  
 window_minutes: 60     # one model input = 60 minutes of data
 stride_minutes: 5      # start a new window every 5 minutes
+min_history_minutes: 15  # earliest window needs this much real data; the rest is padding
+clip: 10               # scaled values beyond +-10 are clipped (glitches, extreme excursions)
 n_folds: 5             # well-level cross-validation folds
