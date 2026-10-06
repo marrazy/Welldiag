@@ -33,7 +33,11 @@ class DataConfig:
     window_minutes: int
     stride_minutes: int
     min_history_minutes: int
+    fault_stride_minutes: int
+    centering: str
+    squash: str
     clip: float
+    sensor_dropout: float
     n_folds: int
 
     def steps(self, minutes: int) -> int:

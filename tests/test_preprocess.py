@@ -13,7 +13,11 @@ CFG = DataConfig(
     window_minutes=60,
     stride_minutes=5,
     min_history_minutes=15,
+    fault_stride_minutes=1,
+    centering="window",
+    squash="asinh",
     clip=10,
+    sensor_dropout=0.1,
     n_folds=5,
 )
 

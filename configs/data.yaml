@@ -1,13 +1,20 @@
 # Data pipeline settings (Phase 2). Change values here, not in code.
-sensors_file: configs/sensors.yaml   # the 6 sensors chosen in notebooks/01_eda.ipynb
+sensors_file: configs/sensors.yaml   # sensors chosen in notebooks/01_eda.ipynb
 sources: [real, simulated]           # drawn excluded: 20 instances, 2 faults, hand-sketched
- 
+
 resample: 60s          # raw data is 1 Hz; take the median of each minute
 max_fill_minutes: 10   # forward-fill gaps up to this long; longer gaps stay missing (masked)
-stuck_minutes: 120      # a sensor reading exactly the same value this long counts as stuck (masked)
- 
+stuck_minutes: 120     # a frozen gauge stays frozen for hours; 30 min flagged steady normal operation
+
 window_minutes: 60     # one model input = 60 minutes of data
 stride_minutes: 5      # start a new window every 5 minutes
 min_history_minutes: 15  # earliest window needs this much real data; the rest is padding
-clip: 10               # scaled values beyond +-10 are clipped (glitches, extreme excursions)
+fault_stride_minutes: 1  # during faults a window ends every minute (real faults can last ~20 min)
+centering: window      # window: centre each window on its own median, so the model sees changes,
+                       #   not each well's pressure level; global: one median for all wells
+squash: asinh          # asinh: compress large changes smoothly (near-linear when small, log-like
+                       #   when big) so faults don't all hit the clip; none: no compression
+clip: 10               # after squashing, values beyond +-10 are clipped (only true glitches)
+sensor_dropout: 0.1    # training only: chance a sensor is blanked in a window, so a sensor's
+                       #   presence or absence can't be used as a shortcut
 n_folds: 5             # well-level cross-validation folds
