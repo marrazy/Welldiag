@@ -1,0 +1,35 @@
+[project]
+name = "welldiag"
+version = "0.1.0"
+description = "Well diagnosis engineering tool using Petrobras dataset"
+readme = "README.md"
+authors = [
+    { name = "Arzy", email = "fatih.arrazy@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "pandas>=3.0.6",
+    "pyarrow>=25.0.1",
+    "torch>=2.14.1",
+]
+
+[project.scripts]
+welldiag = "welldiag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.12,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
