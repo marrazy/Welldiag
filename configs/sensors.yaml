@@ -2,10 +2,12 @@
 # Dropped P-JUS-CKGL (missing in all real Quick restriction in PCK instances)
 # and T-JUS-CKP (missing in all real Hydrate in production line instances):
 # their absence alone would identify the class (label leakage).
+
+
 sensors:
   - P-TPT #Pressure in the subsea tree
   - T-TPT #Temperature in the subsea tree
   - P-ANULAR #Pressure in the annulus area in the tubing
-  - P-PDG #Pressure near reservoir
-  - T-PDG #Temperature near reservoir
+  #- P-PDG #Pressure near reservoir
+  #- T-PDG #Temperature near reservoir
   - P-MON-CKP #Pressure arriving in the surface area

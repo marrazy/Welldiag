@@ -1,0 +1,11 @@
+# Data pipeline settings (Phase 2). Change values here, not in code.
+sensors_file: configs/sensors.yaml   # the 6 sensors chosen in notebooks/01_eda.ipynb
+sources: [real, simulated]           # drawn excluded: 20 instances, 2 faults, hand-sketched
+ 
+resample: 60s          # raw data is 1 Hz; take the median of each minute
+max_fill_minutes: 10   # forward-fill gaps up to this long; longer gaps stay missing (masked)
+stuck_minutes: 120      # a sensor reading exactly the same value this long counts as stuck (masked)
+ 
+window_minutes: 60     # one model input = 60 minutes of data
+stride_minutes: 5      # start a new window every 5 minutes
+n_folds: 5             # well-level cross-validation folds

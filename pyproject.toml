@@ -11,6 +11,8 @@ dependencies = [
     "matplotlib>=3.11.2",
     "pandas>=3.0.6",
     "pyarrow>=25.0.1",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
     "torch>=2.14.1",
 ]
 
@@ -30,6 +32,11 @@ dev = [
 
 [tool.ruff]
 line-length = 100
+extend-exclude = ["data"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
